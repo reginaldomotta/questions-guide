@@ -1,2 +1,5 @@
 # questions-guide
-Projeto de estudo da formação NodeJS - Udemy
+
+NodeJS training study project - Udemy
+
+Tools used: Express, EJS, Body-parse, Sequelize, MySQL ...
