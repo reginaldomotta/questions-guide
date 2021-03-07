@@ -1,24 +1,36 @@
-<%- include('./partials/header.ejs'); %>
+<%- include('partials/header.ejs') %>
 
     <body>
-        <%- include('./partials/navbar.ejs'); %>
+        <%- include('partials/navbar.ejs') %>
             <div class="container">
-                <div class="card" id="formulario-pergunta">
-                    <div class="card-header">
-                        <h3>Realizar pergunta</h3>
+                <hr>
+                <h1>
+                    <%= question.title %>
+                </h1>
+                <p>
+                    <%= question.description %>
+                </p>
+                <hr>
+                <form method="POST" action="/answer">
+                    <h3>Responda</h3>
+                    <label>Resposta:</label>
+                    <textarea placeholder="Digite sua resposta" class="form-control" name="answerBody"></textarea><br>
+                    <input type="hidden" name="question" value="<%= question.id %>">
+                    <button type="submit" class="btn btn-primary">Responder</button>
+                </form>
+                <hr>
+                <h3>Respostas</h3>
+                <hr>
+                <% answers.forEach(answer=> {%>
+                    <br>
+                    <div class="card">
+                        <div class="card-body">
+                            <p>
+                                <%= answer.answerBody %>
+                            </p>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        <form method="POST" action="/savequestion">
-                            <label>Título</label>
-                            <input type="text" placeholder="Título" class="form-control" name="title">
-                            <br><label>Descrição</label>
-                            <textarea placeholder="Descreva sua pergunta aqui" class="form-control"
-                                name="description"></textarea>
-                            <br>
-                            <button class="btn btn-primary">Perguntar</button>
-                        </form>
-                    </div>
-                </div>
+                    <% }) %>
             </div>
     </body>
-    <%- include('./partials/footer.ejs'); %>
+    <%- include('partials/footer.ejs') %>
